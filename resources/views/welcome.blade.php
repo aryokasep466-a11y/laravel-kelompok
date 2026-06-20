@@ -1,115 +1,298 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Akademik</title>
 
-        <title>Laravel</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script>
-            tailwind.config = {
-                darkMode: 'class',
-                theme: {
-                    extend: {
-                        fontFamily: {
-                            sans: ['Instrument Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-                        },
-                    },
-                },
-            }
-        </script>
-    </head>
-    <body class="bg-[#FDFDFC] text-[#1C1A17] dark:bg-[#0A0A0A] dark:text-[#EDEDEC] antialiased min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
-        
-        @if (Route::has('login'))
-            <nav class="absolute top-0 right-0 p-6 text-right z-10">
-                @auth
-                    <a href="{{ url('/dashboard') }}" class="font-medium text-sm text-[#1C1A17] hover:text-black dark:text-[#EDEDEC] dark:hover:text-white focus:outline-[#FF2D20]">Dashboard</a>
-                @else
-                    <a href="{{ route('login') }}" class="font-medium text-sm text-[#1C1A17] hover:text-black dark:text-[#EDEDEC] dark:hover:text-white focus:outline-[#FF2D20] mr-4">Log in</a>
+    <style>
+        body{
+            background: #f8f9fa;
+        }
 
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="font-medium text-sm text-[#1C1A17] hover:text-black dark:text-[#EDEDEC] dark:hover:text-white focus:outline-[#FF2D20]">Register</a>
-                    @endif
-                @endauth
-            </nav>
-        @endif
+        .hero {
+            background: linear-gradient(135deg, #0d6efd, #6610f2);
+            color: white;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
 
-        <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl flex flex-col items-center justify-center min-h-screen dynamic-path">
-            <main class="flex flex-col items-center justify-center flex-1 w-full text-center uniq-content px-4">
-                
-                <div class="flex justify-center mb-6 text-[#FF2D20]">
-                    <svg class="h-16 w-auto" viewBox="0 0 62 65" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M61.8548 14.6253C61.8548 14.6253 58.7418 15.6655 57.2584 16.0315C55.775 16.3975 52.8252 14.6253 52.8252 14.6253L40.7183 7.15172C40.0163 6.7194 39.5815 5.95232 39.5815 5.12748V0L32.1887 4.54226V11.2367L43.8344 18.4239C44.5363 18.8562 44.9712 19.6233 44.9712 20.4481V33.8335L57.2584 26.2699V18.1755L61.8548 14.6253Z" fill="currentColor"/>
-                        <path d="M32.1887 18.1755L19.9015 25.739V11.2367L32.1887 3.67323V18.1755Z" fill="currentColor" opacity="0.6"/>
-                        <path d="M32.1887 31.4222L19.9015 38.9858V26.4357L32.1887 18.8722V31.4222Z" fill="currentColor" opacity="0.4"/>
-                        <path d="M16.9201 12.6338L4.63281 20.1973V34.6996L16.9201 27.1361V12.6338Z" fill="currentColor" opacity="0.6"/>
-                        <path d="M16.9201 29.8805L4.63281 37.444V26.1033L16.9201 18.5398V29.8805Z" fill="currentColor" opacity="0.4"/>
-                        <path d="M0 22.8239L12.2873 15.2604V39.7627L0 47.3262V22.8239Z" fill="currentColor" opacity="0.2"/>
-                        <path d="M32.1887 31.4222L44.476 23.8587V48.361L32.1887 55.9245V31.4222Z" fill="currentColor" opacity="0.8"/>
-                        <path d="M32.1887 45.1639L44.476 37.6004V48.9411L32.1887 56.5046V45.1639Z" fill="currentColor" opacity="0.9"/>
-                        <path d="M47.2514 32.1583L59.5386 24.5948V49.0971L47.2514 56.6606V32.1583Z" fill="currentColor"/>
-                    </svg>
-                </div>
+        .role-card{
+            border: none;
+            border-radius: 15px;
+            transition: .3s;
+        }
 
-                <h1 class="text-4xl font-semibold tracking-tight mb-4">
-                    Laravel <span class="text-[#FF2D20]">v{{ ltrim(App::version(), 'v') }}</span>
+        .role-card:hover{
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,.15);
+        }
+
+        .icon-box{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            font-size: 35px;
+        }
+
+        .stats-card{
+            border-radius: 15px;
+            border: none;
+        }
+
+        footer{
+            background: #212529;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">
+            <i class="bi bi-mortarboard-fill"></i>
+            Portal Akademik
+        </a>
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="#fitur" class="nav-link">Fitur</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#akses" class="nav-link">Akses</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('login') }}" class="btn btn-light ms-2">
+                        Login
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold">
+                    Sistem Informasi Akademik
                 </h1>
-                
-                <p class="max-w-xl mx-auto text-base text-[#1C1A17]/70 dark:text-[#EDEDEC]/70 mb-10">
-                    A web application framework with expressive, elegant syntax. We’ve already started the foundation — free you to create without sweating the small things.
+
+                <p class="lead mt-3">
+                    Platform terintegrasi untuk mengelola data mahasiswa,
+                    dosen, jadwal kuliah, nilai, dan administrasi akademik.
                 </p>
 
-                <div class="grid gap-6 lg:grid-cols-2 max-w-4xl w-full text-left">
-                    <a href="https://laravel.com/docs" class="flex flex-col p-6 bg-white dark:bg-[#161615] rounded-xl border border-[#1C1A17]/10 dark:border-[#EDEDEC]/10 hover:border-[#FF2D20] dark:hover:border-[#FF2D20] transition group shadow-[0px_14px_34px_0px_rgba(0,0,0,0.03)]">
-                        <h2 class="text-lg font-medium mb-2 group-hover:text-[#FF2D20] transition">Documentation</h2>
-                        <p class="text-sm text-[#1C1A17]/70 dark:text-[#EDEDEC]/70 leading-relaxed">
-                            Laravel has wonderful documentation covering every aspect of the framework. Whether you are a newcomer or have prior experience, we recommend reading our entire documentation.
-                        </p>
-                    </a>
+                <a href="{{ route('login') }}" class="btn btn-warning btn-lg mt-3">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    Masuk Sekarang
+                </a>
+            </div>
 
-                    <a href="https://laracasts.com" class="flex flex-col p-6 bg-white dark:bg-[#161615] rounded-xl border border-[#1C1A17]/10 dark:border-[#EDEDEC]/10 hover:border-[#FF2D20] dark:hover:border-[#FF2D20] transition group shadow-[0px_14px_34px_0px_rgba(0,0,0,0.03)]">
-                        <h2 class="text-lg font-medium mb-2 group-hover:text-[#FF2D20] transition">Laracasts</h2>
-                        <p class="text-sm text-[#1C1A17]/70 dark:text-[#EDEDEC]/70 leading-relaxed">
-                            Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
-                        </p>
-                    </a>
-                </div>
-            </main>
+            <div class="col-lg-6 text-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png"
+                     class="img-fluid"
+                     width="350"
+                     alt="Akademik">
+            </div>
 
-            <footer class="py-16 text-center text-sm text-[#1C1A17]/50 dark:text-[#EDEDEC]/50 w-full flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#1C1A17]/5 dark:border-[#EDEDEC]/5 mt-10">
-                <div>
-                    Laravel v{{ ltrim(App::version(), 'v') }} (PHP v{{ PHP_VERSION }})
+        </div>
+    </div>
+</section>
+
+<!-- Statistik -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="card stats-card shadow-sm text-center p-4">
+                    <h2 class="text-primary fw-bold">500+</h2>
+                    <p class="mb-0">Mahasiswa Aktif</p>
                 </div>
-                
-                <button onclick="toggleDarkMode()" class="px-3 py-1.5 rounded-lg border border-[#1C1A17]/10 dark:border-[#EDEDEC]/10 text-xs font-medium hover:bg-[#1C1A17]/5 dark:hover:bg-[#EDEDEC]/5 transition">
-                    <span class="dark:hidden">🌙 Dark Mode</span>
-                    <span class="hidden dark:inline">☀️ Light Mode</span>
-                </button>
-            </footer>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card stats-card shadow-sm text-center p-4">
+                    <h2 class="text-success fw-bold">50+</h2>
+                    <p class="mb-0">Dosen</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card stats-card shadow-sm text-center p-4">
+                    <h2 class="text-danger fw-bold">20+</h2>
+                    <p class="mb-0">Program Studi</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Fitur -->
+<section id="fitur" class="py-5">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Fitur Utama</h2>
+            <p class="text-muted">
+                Memudahkan pengelolaan kegiatan akademik kampus
+            </p>
         </div>
 
-        <script>
-            // Check local storage or system preference
-            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
+        <div class="row g-4">
 
-            function toggleDarkMode() {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('theme', 'dark');
-                }
-            }
-        </script>
-    </body>
+            <div class="col-md-4">
+                <div class="card role-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <i class="bi bi-calendar-week fs-1 text-primary"></i>
+                        <h5 class="mt-3">Jadwal Kuliah</h5>
+                        <p class="text-muted">
+                            Informasi jadwal kuliah yang terstruktur.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card role-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <i class="bi bi-journal-check fs-1 text-success"></i>
+                        <h5 class="mt-3">Penilaian</h5>
+                        <p class="text-muted">
+                            Input dan monitoring nilai mahasiswa.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card role-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <i class="bi bi-file-earmark-text fs-1 text-danger"></i>
+                        <h5 class="mt-3">KRS & KHS</h5>
+                        <p class="text-muted">
+                            Pengelolaan KRS dan hasil studi mahasiswa.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Akses -->
+<section id="akses" class="py-5 bg-light">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Akses Sistem</h2>
+            <p class="text-muted">
+                Pilih akses sesuai peran pengguna
+            </p>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="card role-card shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-box bg-primary text-white">
+                            <i class="bi bi-person-gear"></i>
+                        </div>
+
+                        <h4 class="mt-3">Admin</h4>
+
+                        <p class="text-muted">
+                            Kelola data master dan sistem.
+                        </p>
+
+                       <a href="{{ route('login.admin') }}" class="btn btn-primary">
+                          Login Admin
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card role-card shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-box bg-success text-white">
+                            <i class="bi bi-person-workspace"></i>
+                        </div>
+
+                        <h4 class="mt-3">Dosen</h4>
+
+                        <p class="text-muted">
+                            Input nilai dan absensi mahasiswa.
+                        </p>
+
+                        <a href="{{ route('login.dosen') }}" class="btn btn-success">
+                         Login Dosen
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card role-card shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="icon-box bg-warning text-white">
+                            <i class="bi bi-mortarboard"></i>
+                        </div>
+
+                        <h4 class="mt-3">Mahasiswa</h4>
+
+                        <p class="text-muted">
+                            Akses KRS, KHS, dan jadwal kuliah.
+                        </p>
+
+                        <a href="{{ route('login.mahasiswa') }}" class="btn btn-warning">
+                          Login Mahasiswa
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<footer class="py-3 text-center">
+    <div class="container">
+        <small>
+            © {{ date('Y') }} Portal Akademik | Sistem Informasi Akademik
+        </small>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
 </html>
