@@ -30,6 +30,7 @@ class RegisterMahasiswaController extends Controller
         'name' => $request->nama,
         'email' => $request->email,
         'password' => Hash::make($request->password),
+        'role' => 'mahasiswa',
     ]);
 
     Mahasiswa::create([
