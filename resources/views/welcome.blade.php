@@ -13,11 +13,11 @@
 
     <style>
         body{
-            background: #f8f9fa;
+            background: #1077f4;
         }
 
         .hero {
-            background: linear-gradient(135deg, #0d6efd, #6610f2);
+            background: linear-gradient(135deg, #1058f4, #08b3f6);
             color: white;
             min-height: 90vh;
             display: flex;
@@ -32,7 +32,7 @@
 
         .role-card:hover{
             transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(0,0,0,.15);
+            box-shadow: 0 10px 25px rgba(246, 91, 246, 0.15);
         }
 
         .icon-box{
@@ -52,7 +52,7 @@
         }
 
         footer{
-            background: #212529;
+            background: #0680f3;
             color: white;
         }
     </style>
@@ -80,6 +80,11 @@
                 </li>
                 <li class="nav-item">
                     <a href="#akses" class="nav-link">Akses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('about') }}">
+                        About
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('login') }}" class="btn btn-light ms-2">

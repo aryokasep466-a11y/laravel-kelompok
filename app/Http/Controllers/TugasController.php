@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Tugas;
 use App\Models\PengumpulanTugas;
 
@@ -37,7 +37,7 @@ class TugasController extends Controller
             ->with('success', 'Tugas berhasil ditambahkan');
     }
 
-    // Upload tugas mahasiswa
+// Upload tugas mahasiswa
     public function upload(Request $request)
 {
     $file = $request->file('file');
@@ -49,9 +49,9 @@ class TugasController extends Controller
         'mahasiswa_id' => auth()->id(),
         'file_path' => $path,
     ]);
-
-    return back()->with('success', 'Tugas berhasil dikirim');
+     return back()->with('success', 'Tugas berhasil dikirim');
 }
+
    public function edit($id)
 {
     $tugas = Tugas::findOrFail($id);
