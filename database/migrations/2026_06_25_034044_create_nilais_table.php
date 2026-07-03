@@ -11,14 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('nilais', function (Blueprint $table) {
+       Schema::create('nilais', function (Blueprint $table) {
     $table->id();
-    $table->foreignId('mahasiswa_id')->constrained()->onDelete('cascade');
+
+    $table->unsignedBigInteger('mahasiswa_id');
+
+    $table->foreign('mahasiswa_id')
+          ->references('id')
+          ->on('mahasiswas')
+          ->onDelete('cascade');
 
     $table->integer('tugas')->nullable();
     $table->integer('uts')->nullable();
     $table->integer('uas')->nullable();
-    $table->decimal('nilai_akhir',5,2)->nullable();
+    $table->decimal('nilai_akhir', 5, 2)->nullable();
 
     $table->timestamps();
 });
