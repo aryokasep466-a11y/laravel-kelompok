@@ -87,8 +87,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('login') }}" class="btn btn-light ms-2">
-                        Login
                     </a>
                 </li>
             </ul>
@@ -110,10 +108,6 @@
                     Platform terintegrasi untuk mengelola data mahasiswa,
                     dosen, jadwal kuliah, nilai, dan administrasi akademik.
                 </p>
-
-                <a href="{{ route('login') }}" class="btn btn-warning btn-lg mt-3">
-                    <i class="bi bi-box-arrow-in-right"></i>
-                    Masuk Sekarang
                 </a>
             </div>
 
